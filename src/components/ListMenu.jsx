@@ -32,7 +32,7 @@ export default function ListMenu() {
       {/* Cari */}
       <li>
         <NavLink
-          to="/search"
+          to="/cari"
           className={({ isActive }) =>
             `${baseStyle} ${isActive ? activeStyle : normalStyle}`
           }
@@ -42,10 +42,10 @@ export default function ListMenu() {
         </NavLink>
       </li>
         
-        {/* Simpan */}
+        {/* Tambah Resep*/}
       <li>
         <NavLink
-          to="/simpan"
+          to="/tambahresep"
           className={({ isActive }) =>
             `${baseStyle} ${isActive ? activeStyle : normalStyle}`
           }
