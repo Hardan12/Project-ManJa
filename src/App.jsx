@@ -12,7 +12,7 @@ const Login = React.lazy(() => import("./pages/auth/Login"));
 const Cari = React.lazy(() => import("./pages/Cari"));
 const TambahResep = React.lazy(() => import("./pages/TambahResep"));
 const Simpan = React.lazy(() => import("./pages/Simpan"));
-const Tes = React.lazy(() => import("./pages/tes"));
+
 
 function App() {
     return (
@@ -23,7 +23,7 @@ function App() {
                 <Route path="cari" element={<Cari />} />
                 <Route path="tambahresep" element={<TambahResep />} />
                 <Route path="simpan" element={<Simpan />} />
-                <Route path="tes" element={<Tes />} />
+               
             </Route>
 
             {/* AUTH ROUTES */}
