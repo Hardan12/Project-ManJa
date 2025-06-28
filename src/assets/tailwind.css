@@ -15,6 +15,11 @@
     src: url('/Fonts/Poppins-ExtraBold.ttf') ;
 }
 
+@font-face {
+    font-family: 'DancingScript';
+    src: url('/Fonts/static/DancingScript-Regular.ttf') ;
+}
+
 @theme {
     --font-barlow: "Barlow", sans-serif;
     --font-poppins: "Poppins", sans-serif;

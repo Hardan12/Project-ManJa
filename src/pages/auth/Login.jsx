@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { ImSpinner2 } from "react-icons/im";
 import { BsFillExclamationDiamondFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import axios from "axios";
 
 export default function Login() {
@@ -13,9 +13,12 @@ export default function Login() {
     password: "",
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setDataForm({ ...dataForm, [name]: value });
+  const handleChange = (evt) => {
+    const { name, value } = evt.target;
+    setDataForm({
+      ...dataForm,
+      [name]: value,
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -30,94 +33,106 @@ export default function Login() {
     }
 
     try {
-      const res = await axios.post("https://dummyjson.com/user/login", {
+      const response = await axios.post("https://dummyjson.com/user/login", {
         username: dataForm.email,
         password: dataForm.password,
       });
 
-      if (res.status === 200) {
-        navigate("/");
+      if (response.status !== 200) {
+        setError(response.data.message);
       } else {
-        setError("Login gagal.");
+        navigate("/");
       }
     } catch (err) {
-      setError(err.response?.data?.message || "Terjadi kesalahan.");
+      setError(err.response?.data?.message || err.message || "An unknown error occurred");
     } finally {
       setLoading(false);
     }
   };
 
+  const errorInfo = error ? (
+    <div className="bg-red-200 mb-5 p-5 text-sm font-light text-gray-600 rounded flex items-center">
+      <BsFillExclamationDiamondFill className="text-red-600 me-2 text-lg" />
+      {error}
+    </div>
+  ) : null;
+
+  const loadingInfo = loading ? (
+    <div className="bg-gray-200 mb-5 p-5 text-sm rounded flex items-center">
+      <ImSpinner2 className="me-2 animate-spin" />
+      Mohon Tunggu...
+    </div>
+  ) : null;
+
   return (
-    <div className="w-full max-w-md mx-auto font-poppins">
-      <h1 className="text-5xl font-bold text-orange-500 text-center mb-12">
-        Login
-      </h1>
-
-      {error && (
-        <div className="bg-red-100 text-sm text-gray-700 rounded flex items-center p-4 mb-5">
-          <BsFillExclamationDiamondFill className="text-red-600 mr-2" />
-          {error}
-        </div>
-      )}
-
-      {loading && (
-        <div className="bg-gray-100 text-sm text-gray-600 rounded flex items-center p-4 mb-5">
-          <ImSpinner2 className="mr-2 animate-spin" />
-          Mohon tunggu...
-        </div>
-      )}
-
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
-          <label className="block text-gray-800 text-sm font-semibold mb-2">
-            Email
+    <div>
+      <h2 className="text-2xl font-semibold text-gray-700 mb-6 text-center">
+        Welcome Back 👋
+      </h2>
+      {errorInfo}
+      {loadingInfo}
+      <form onSubmit={handleSubmit}>
+        <div className="mb-5">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Email Address
           </label>
           <input
             type="email"
+            id="email"
+            className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400"
+            placeholder="you@example.com"
             name="email"
-            placeholder="Contoh: manja@mail.com"
-            value={dataForm.email}
+            autoComplete="email"
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400 placeholder:text-gray-400"
           />
         </div>
-
-        <div>
-          <label className="block text-gray-800 text-sm font-semibold mb-2">
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
             Password
           </label>
           <input
             type="password"
-            name="password"
+            id="password"
+            className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400"
             placeholder="********"
-            value={dataForm.password}
+            name="password"
+            autoComplete="current-password"
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400 placeholder:text-gray-400"
           />
         </div>
-
-        <div className="text-sm text-right">
-          <button
-            type="button"
-            onClick={() => navigate("/forgot")}
-            className="text-orange-500 hover:underline"
-          >
-            Lupa Password?
-          </button>
-        </div>
-
         <button
           type="submit"
           disabled={loading}
-          className={`w-full py-3 rounded-full font-semibold transition duration-300 ${
+          className={`w-full font-semibold py-2 px-4 rounded-lg transition duration-300 ${
             loading
-              ? "bg-orange-300 cursor-not-allowed text-white"
-              : "bg-orange-500 hover:bg-orange-600 text-white"
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-yellow-500 hover:bg-yellow-300 text-white"
           }`}
         >
           {loading ? "Logging in..." : "Login"}
         </button>
       </form>
+
+      {/* Link tambahan */}
+      <div className="mt-6 text-center text-sm text-gray-600">
+        <p className="mb-2">
+          <button
+            onClick={() => navigate("/forgot")}
+            className="text-blue-600 hover:underline"
+          >
+            Forgot Password?
+          </button>
+        </p>
+        <p>
+          Don't have an account?{" "}
+          <button
+            onClick={() => navigate("/register")}
+            className="text-blue-600 hover:underline"
+          >
+            Register
+          </button>
+        </p>
+      </div>
     </div>
   );
 }
