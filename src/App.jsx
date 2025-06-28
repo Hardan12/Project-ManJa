@@ -22,7 +22,6 @@ const Unauthorized = React.lazy(() => import("./pages/Unauthorized"));
 const Home = React.lazy(() => import("./pages/Guest/Home"));
 const About = React.lazy(() => import("./pages/Guest/About"));
 const Product = React.lazy(() => import("./pages/Guest/Product"));
-const Members = React.lazy(() => import("./pages/Guest/Members"));
 const GuestLayout = React.lazy(() => import("./layouts/GuestLayout"));
 
 
