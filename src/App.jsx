@@ -22,7 +22,6 @@ const Unauthorized = React.lazy(() => import("./pages/Unauthorized"));
 const Home = React.lazy(() => import("./pages/Guest/Home"));
 const About = React.lazy(() => import("./pages/Guest/About"));
 const Product = React.lazy(() => import("./pages/Guest/Product"));
-const Testimoni = React.lazy(() => import("./pages/Guest/Testimoni"));
 const Members = React.lazy(() => import("./pages/Guest/Members"));
 const GuestLayout = React.lazy(() => import("./layouts/GuestLayout"));
 
@@ -43,7 +42,7 @@ function App() {
             <Route element={<GuestLayout />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/testimoni" element={<Testimoni />} />
+              
             </Route>
 
             {/* AUTH ROUTES */}
