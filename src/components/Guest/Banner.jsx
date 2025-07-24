@@ -1,4 +1,5 @@
 import { FaTiktok, FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 export default function Banner() {
     return (
@@ -34,9 +35,13 @@ export default function Banner() {
                 </p>
 
                 {/* Tombol Aksi */}
-                <button className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-lg hover:bg-yellow-300 transition duration-300">
-                    Ayo Bergabung
-                </button>
+                <NavLink to="/login">
+                    <button className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-lg hover:bg-yellow-300 transition duration-300">
+                        Ayo Bergabung
+                    </button>
+                </NavLink>
+
+
             </div>
 
             {/* Sosial Media Icons di tengah bawah */}

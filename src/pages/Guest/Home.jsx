@@ -1,5 +1,6 @@
 import Banner from "../../components/Guest/Banner";
 import Footer from "../../components/Guest/Footer";
+import { NavLink } from "react-router-dom";
 
 export default function Home() {
     return (
@@ -39,20 +40,51 @@ export default function Home() {
                 </div>
             </section>
 
+
             {/* Section: Testimoni */}
-            <section className="py-16 px-6 max-w-6xl mx-auto">
-                <h2 className="text-2xl font-bold mb-6">Testimoni</h2>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                    {[1, 2, 3, 4].map((i) => (
-                        <div
-                            key={i}
-                            className="bg-gray-200 h-40 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
-                        >
-                            {/* Placeholder 3D-style box */}
+            <section className="py-16 bg-yellow-50 px-6">
+                <div className="max-w-6xl mx-auto text-center">
+                    <h2 className="text-2xl font-bold mb-10">Cerita Rasa dari Pengguna ManJa</h2>
+                    <div className="grid md:grid-cols-3 gap-6">
+                        <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                            <p className="italic text-gray-700">
+                                "Dulu bingung tiap malam mau makan apa. Sekarang tinggal buka ManJa, langsung nemu yang cocok!"
+                            </p>
+                            <p className="font-semibold mt-4 text-gray-800">- Riko, Mahasiswa</p>
                         </div>
-                    ))}
+                        <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                            <p className="italic text-gray-700">
+                                "Review dari pengguna lain sangat membantu. Rekomendasi makanannya selalu pas di lidah!"
+                            </p>
+                            <p className="font-semibold mt-4 text-gray-800">- Dina, Ibu Rumah Tangga</p>
+                        </div>
+                        <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                            <p className="italic text-gray-700">
+                                "Fitur ulasan dan foto makanannya bikin ngiler. Beneran jadi lebih seru eksplor kuliner!"
+                            </p>
+                            <p className="font-semibold mt-4 text-gray-800">- Arfan, Pegawai Kantoran</p>
+                        </div>
+                    </div>
                 </div>
             </section>
+
+
+
+            {/* Section: Call to Action */}
+            <section className="py-16 bg-yellow-400 text-center px-6">
+                <h2 className="text-2xl md:text-3xl font-bold mb-4">Sudah Tahu Mau Makan Apa Hari Ini?</h2>
+                <p className="mb-6 text-gray-900 text-base md:text-lg">
+                    Temukan rekomendasi kuliner terbaik dan cerita rasa dari komunitas ManJa.
+                </p>
+                <NavLink to="/login">
+                    <button className="bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition">
+                        Lihat Menu
+                    </button>
+                </NavLink>
+
+            </section>
+
+
 
             <Footer />
         </div>
